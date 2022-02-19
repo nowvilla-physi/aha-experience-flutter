@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.now.village.aha_experience">
    <application
-        android:label="aha_experience"
+        android:label="脳トレ - アハ!!体験 -"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
