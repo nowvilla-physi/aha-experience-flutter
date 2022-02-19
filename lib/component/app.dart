@@ -9,16 +9,19 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: const Size(428, 926), // iPhone13 Pro Max
+        designSize:
+            const Size(Dimens.iPhone13ProWidth, Dimens.iPhone13ProHeight),
         builder: () {
           return MaterialApp(
             title: Strings.appTitle,
             theme: ThemeData(
+              appBarTheme: const AppBarTheme(
+                backgroundColor: AppColors.mainColor,
+              ),
               scaffoldBackgroundColor: AppColors.baseColor,
             ),
             home: const Home(title: Strings.appTitle),
           );
-        }
-    );
+        });
   }
 }

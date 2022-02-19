@@ -18,7 +18,7 @@ class _HomeState extends State<Home> {
       _counter++;
     });
   }
-  
+
   void appPrint() {
     debugPrint("clicked!!");
   }
@@ -38,20 +38,23 @@ class _HomeState extends State<Home> {
           child: Column(
             children: <Widget>[
               Image.asset("assets/images/home-logo.png"),
-              const AppSpacer(height: 64),
+              AppSpacer(height: 64.h),
               LevelSelectionButton(
-                  name: Strings.beginnerButton,
-                  handleTap: appPrint,
-                  backgroundColor: AppColors.beginner,
+                key: const Key(Strings.beginnerButton),
+                name: Strings.beginnerButton,
+                handleTap: appPrint,
+                backgroundColor: AppColors.beginner,
               ),
-              const AppSpacer(height: 24),
+              AppSpacer(height: 24.h),
               LevelSelectionButton(
+                key: const Key(Strings.advancedButton),
                 name: Strings.advancedButton,
                 handleTap: appPrint,
                 backgroundColor: AppColors.advanced,
               ),
-              const AppSpacer(height: 24),
+              AppSpacer(height: 24.h),
               LevelSelectionButton(
+                key: const Key(Strings.demonButton),
                 name: Strings.demonButton,
                 handleTap: appPrint,
                 backgroundColor: AppColors.demon,
