@@ -1,7 +1,6 @@
-import 'package:aha_experience/resource/colors.dart';
-import 'package:aha_experience/resource/dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:aha_experience/importer.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key, required this.title}) : super(key: key);
@@ -19,6 +18,10 @@ class _HomeState extends State<Home> {
       _counter++;
     });
   }
+  
+  void appPrint() {
+    debugPrint("clicked!!");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +38,23 @@ class _HomeState extends State<Home> {
           child: Column(
             children: <Widget>[
               Image.asset("assets/images/home-logo.png"),
-              const Text(
-                'You have pushed the button this many times:',
-                style: TextStyle(
-                  color: AppColors.white,
-                ),
+              const AppSpacer(height: 64),
+              LevelSelectionButton(
+                  name: Strings.beginnerButton,
+                  handleTap: appPrint,
+                  backgroundColor: AppColors.beginner,
+              ),
+              const AppSpacer(height: 24),
+              LevelSelectionButton(
+                name: Strings.advancedButton,
+                handleTap: appPrint,
+                backgroundColor: AppColors.advanced,
+              ),
+              const AppSpacer(height: 24),
+              LevelSelectionButton(
+                name: Strings.demonButton,
+                handleTap: appPrint,
+                backgroundColor: AppColors.demon,
               ),
             ],
           ),
