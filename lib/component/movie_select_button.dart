@@ -23,6 +23,19 @@ class _MovieSelectButtonState extends State<MovieSelectButton> {
     return item.isLocked ? Strings.locked : "Aha Film #$filledZeroId";
   }
 
+  Color _switchBackgroundColor(DataItem item) {
+    switch (item.level) {
+      case "beginner":
+        return AppColors.beginner;
+      case "advanced":
+        return AppColors.advanced;
+      case "demon":
+        return AppColors.demon;
+      default:
+        return AppColors.beginner;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final item = widget.item;
@@ -34,10 +47,10 @@ class _MovieSelectButtonState extends State<MovieSelectButton> {
         child: ElevatedButton(
           child: Text(
             _createButtonName(item),
-            style: TextStyle(fontSize: 18.sp),
+            style: TextStyle(fontSize: 20.sp),
           ),
           style: ElevatedButton.styleFrom(
-            primary: AppColors.beginner,
+            primary: _switchBackgroundColor(item),
             onPrimary: AppColors.white,
             onSurface: AppColors.disabled,
             shape: RoundedRectangleBorder(

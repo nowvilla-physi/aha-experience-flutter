@@ -16,6 +16,19 @@ class Movies extends StatefulWidget {
 }
 
 class _MoviesState extends State<Movies> {
+  String _switchImage(DataItem item) {
+    switch (item.level) {
+      case "beginner":
+        return "assets/images/ic_character_beginner.png";
+      case "advanced":
+        return "assets/images/ic_character_advanced.png";
+      case "demon":
+        return "assets/images/ic_character_demon.png";
+      default:
+        return "assets/images/ic_character_beginner.png";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<DataItem> items =
@@ -41,8 +54,7 @@ class _MoviesState extends State<Movies> {
                   ),
                   SizedBox(
                     height: 80.h,
-                    child:
-                        Image.asset("assets/images/ic_character_beginner.png"),
+                    child: Image.asset(_switchImage(items[0])),
                   )
                 ],
               ),
