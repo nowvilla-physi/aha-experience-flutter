@@ -30,7 +30,10 @@ class _MoviesState extends State<Movies> {
   }
 
   void toHome() {
-    Navigator.of(context).pushNamed(Strings.homePath);
+    Navigator.of(context).pushNamedAndRemoveUntil(
+        Strings.homePath,
+        (Route<dynamic> route) => false
+    );
   }
 
   @override
