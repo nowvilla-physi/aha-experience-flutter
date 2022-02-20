@@ -8,7 +8,7 @@ import 'package:aha_experience/importer.dart';
 class AppRouter {
   final Map<String, Widget Function(BuildContext)> config = {
     Strings.homePath: (BuildContext context) => const Home(
-          title: '1w2',
+          title: Strings.appTitle,
         ),
     Strings.beginnerMoviesPath: (BuildContext context) => const Movies(
         key: Key(Strings.beginnerMoviesPath),
