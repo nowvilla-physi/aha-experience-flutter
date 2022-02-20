@@ -29,6 +29,10 @@ class _MoviesState extends State<Movies> {
     }
   }
 
+  void toHome() {
+    Navigator.of(context).pushNamed(Strings.homePath);
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<DataItem> items =
@@ -38,8 +42,9 @@ class _MoviesState extends State<Movies> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: SingleChildScrollView(
-        child: Container(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
             padding: EdgeInsets.symmetric(
               horizontal: Dimens.allPadding.w,
               vertical: Dimens.allPadding.h,
@@ -63,7 +68,15 @@ class _MoviesState extends State<Movies> {
                 items: items,
                 backgroundColor: Colors.white,
               ),
-            ])),
+              ActionButton(
+                name: Strings.backButton,
+                textColor: AppColors.baseColor,
+                backgroundColor: AppColors.white,
+                handleTap: toHome,
+              ),
+            ]),
+          ),
+        ),
       ),
     );
   }

@@ -9,6 +9,7 @@ class Strings {
   static const beginnerButton = "初級編";
   static const advancedButton = "上級編";
   static const demonButton = "鬼級編";
+  static const backButton = "戻る";
   static const locked = "🔒LOCKED";
 
   // level.

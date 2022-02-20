@@ -1,4 +1,5 @@
 export 'component/app.dart';
+export 'component/action_button.dart';
 export 'component/level_select_button.dart';
 export 'component/movie_select_button.dart';
 export 'component/movie _list.dart';
