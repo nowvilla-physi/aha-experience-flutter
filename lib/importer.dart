@@ -1,7 +1,13 @@
 export 'component/app.dart';
-export 'component/level_selection_button.dart';
+export 'component/action_button.dart';
+export 'component/level_select_button.dart';
+export 'component/movie_select_button.dart';
+export 'component/movie _list.dart';
 export 'component/spacer.dart';
+export 'package:aha_experience/model/model.dart';
 export 'package:aha_experience/resource/colors.dart';
 export 'package:aha_experience/resource/dimens.dart';
 export 'package:aha_experience/resource/strings.dart';
+export 'package:aha_experience/router/router.dart';
 export 'view/home.dart';
+export 'view/movies.dart';

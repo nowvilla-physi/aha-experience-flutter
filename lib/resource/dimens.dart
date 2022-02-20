@@ -4,4 +4,5 @@ class Dimens {
   static const allPadding = 32;
   static const allBorderRadius = 8.0;
   static const defaultSpacerHeight = 16.0;
+  static const movieItemMarginVertical = 32.0;
 }

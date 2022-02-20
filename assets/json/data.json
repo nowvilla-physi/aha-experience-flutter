@@ -1,0 +1,308 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "level": "beginner",
+            "isLocked": false,
+            "isLastOfLevel": false,
+            "hint": "ウサギの耳に注目してください。",
+            "answer": "ウサギの左耳に注目してください。左耳が大きくなります。"
+        },
+        {
+            "id": 2,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "影に注目してください。",
+            "answer": "袖の影に注目してください。袖の影が大きくなります。"
+        },
+        {
+            "id": 3,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "何かが出現します。",
+            "answer": "画面左に注目してください。緑色のクレヨンが出現します。"
+        },
+        {
+            "id": 4,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "何かが出現します。",
+            "answer": "画面右下に注目してください。メモリーカードが出現します。"
+        },
+        {
+            "id": 5,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "何かが出現します。",
+            "answer": "画面中央に注目してください。キュウリが出現します。"
+        },
+        {
+            "id": 6,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "どこかの杖が大きくなります。",
+            "answer": "画面中央からやや左上に注目してください。杖が大きくなります。"
+        },
+        {
+            "id": 7,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "アルファベットに注目してください。",
+            "answer": "画面中央に注目してください。「T」が「I」になります。"
+        },
+        {
+            "id": 8,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "右側の葉っぱに注目してください。",
+            "answer": "画面右に注目してください。葉っぱが一枚増えます。"
+        },
+        {
+            "id": 9,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "画面上部の灯りに注目してください。",
+            "answer": "画面中央やや右上に注目してください。灯りが消えます。"
+        },
+        {
+            "id": 10,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "人物のどこかに変化があります。",
+            "answer": "画面左に注目してください。男の子の髪型が変わります。"
+        },
+        {
+            "id": 11,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "鳥がどこかに出現します。",
+            "answer": "画面中央に注目してください。鳥が一匹増えます。"
+        },
+        {
+            "id": 12,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "赤い食べ物に注目してください。",
+            "answer": "画面中央に注目してください。レモンの上の食べ物がトマトに変わります。"
+        },
+        {
+            "id": 13,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "どこかの色が変わります。",
+            "answer": "画面中央に注目してください。家族写真の背景色が変わります。"
+        },
+        {
+            "id": 14,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "どこかの色が変わります。",
+            "answer": "画面右上に注目してください。ロゴの色が変わります。"
+        },
+        {
+            "id": 15,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "何かが消えます。",
+            "answer": "画面中央下に注目してください。ろうそくの火が消えます。"
+        },
+        {
+            "id": 16,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "何かが消えます。",
+            "answer": "画面中央左に注目してください。模様が消えます。"
+        },
+        {
+            "id": 17,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "あるアルファベットが変わります。",
+            "answer": "画面中央に注目してください。「A」が「Z」に変わります。"
+        },
+        {
+            "id": 18,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "どこかのタイルの色が変わります。",
+            "answer": "画面右に注目してください。タイルの色が変わります。"
+        },
+        {
+            "id": 19,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "何かが出現します。",
+            "answer": "画面左上に注目してください。船が出現します。"
+        },
+        {
+            "id": 20,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "パソコンに注目してください。",
+            "answer": "画面右に注目してください。「Alt」が「Windows」のロゴに変わります。"
+        },
+        {
+            "id": 21,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "どこかの色が変わります。",
+            "answer": "画面右下に注目してください。青い風船の色が変わります。"
+        },
+        {
+            "id": 22,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "どのコントローラーがお好みですか？",
+            "answer": "画面中央右に注目してください。「？」が「！」に変わります。"
+        },
+        {
+            "id": 23,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "カレンダーに注目してください。",
+            "answer": "画面中央に注目してください。「木」が「本」に変わります。"
+        },
+        {
+            "id": 24,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "何かの大きさが変わります。",
+            "answer": "画面左上に注目してください。赤い箱の大きさが変わります。"
+        },
+        {
+            "id": 25,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "何かの大きさが変わります。",
+            "answer": "画面中央下に注目してください。サメの大きさが変わります。"
+        },
+        {
+            "id": 26,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "窓に注目してください。",
+            "answer": "画面中央上に注目してください。窓に何か映り込みます。"
+        },
+        {
+            "id": 27,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "車に注目してください。",
+            "answer": "画面中央右に注目してください。「Jeep」の文字が出現します。"
+        },
+        {
+            "id": 28,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "糸に注目してください。",
+            "answer": "画面中央に注目してください。ピンクの糸の色が変わります。"
+        },
+        {
+            "id": 29,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "コインに注目してください。",
+            "answer": "画面左下に注目してください。コインの表面が変化します。"
+        },
+        {
+            "id": 30,
+            "level": "beginner",
+            "isLocked": true,
+            "isLastOfLevel": true,
+            "hint": "何かが出現します。",
+            "answer": "画面中央下に注目してください。茶色の葉っぱが出現します。"
+        },
+        {
+            "id": 31,
+            "level": "advanced",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "道路に注目してください。",
+            "answer": "画面中央に注目してください。白い線が伸びます。"
+        },
+        {
+            "id": 32,
+            "level": "advanced",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "何かの向きが変わります。",
+            "answer": "画面左下に注目してください。お菓子の表面の向きが変わります。"
+        },
+        {
+            "id": 33,
+            "level": "advanced",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "マウスに注目してください。",
+            "answer": "画面中央左に注目してください。ロゴが反転します。"
+        },
+        {
+            "id": 34,
+            "level": "advanced",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "木目に注目してください。",
+            "answer": "画面左下に注目してください。木目が変わります。"
+        },
+        {
+            "id": 35,
+            "level": "advanced",
+            "isLocked": true,
+            "isLastOfLevel": true,
+            "hint": "どこかのボールに変化があります。",
+            "answer": "画面中央右に注目してください。ボールの影が反転します。"
+        },
+        {
+            "id": 36,
+            "level": "demon",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "鬼級編なのでヒントはなしです。",
+            "answer": "画面左下に注目してください。「篠崎」が「篠﨑」に変わります。"
+        },
+        {
+            "id": 37,
+            "level": "demon",
+            "isLocked": true,
+            "isLastOfLevel": false,
+            "hint": "鬼級編なのでヒントはなしです。",
+            "answer": "画面右下に注目してください。カボチャ右目の横にお化けが出現します。"
+        },
+        {
+            "id": 38,
+            "level": "demon",
+            "isLocked": true,
+            "isLastOfLevel": true,
+            "hint": "鬼級編なのでヒントはなしです。",
+            "answer": "画面左上に注目してください。赤い光の中にハートが出現します。"
+        }
+    ]
+}
