@@ -21,6 +21,7 @@ class App extends StatelessWidget {
               scaffoldBackgroundColor: AppColors.baseColor,
             ),
             home: const Home(title: Strings.appTitle),
+              routes: AppRouter().config,
           );
         });
   }

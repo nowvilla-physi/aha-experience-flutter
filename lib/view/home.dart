@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:aha_experience/importer.dart';
 
@@ -11,16 +13,55 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _counter = 0;
+  List<DataItem> _beginnerDataItems = [];
+  List<DataItem> _advancedDataItems = [];
+  List<DataItem> _demonDataItems = [];
 
-  void _incrementCounter() {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     setState(() {
-      _counter++;
+      _loadDataItemsFromJson();
     });
   }
 
-  void appPrint() {
-    debugPrint("clicked!!");
+  Future<void> _loadDataItemsFromJson() async {
+    String jsonStr = await rootBundle.loadString("assets/json/data.json");
+    final data = json.decode(jsonStr)["data"];
+    final dataItems = List<DataItem>.from(data
+        .map((value) => DataItem.fromJson(Map<String, dynamic>.from(value)))
+        .toList());
+    _beginnerDataItems = _filterEachLevel(dataItems, "beginner");
+    _advancedDataItems = _filterEachLevel(dataItems, "advanced");
+    _demonDataItems = _filterEachLevel(dataItems, "demon");
+  }
+
+  List<DataItem> _filterEachLevel(List<DataItem> data, String level) {
+    return data.where((item) => item.level == level).toList();
+  }
+
+  void toBeginnerMovies() {
+    Navigator.pushNamed(
+      context,
+      Strings.beginnerMoviesPath,
+      arguments: _beginnerDataItems,
+    );
+  }
+
+  void toAdvancedMovies() {
+    Navigator.pushNamed(
+      context,
+      Strings.advancedMoviesPath,
+      arguments: _advancedDataItems,
+    );
+  }
+
+  void toDemonMovies() {
+    Navigator.pushNamed(
+      context,
+      Strings.demonMoviesPath,
+      arguments: _demonDataItems,
+    );
   }
 
   @override
@@ -42,21 +83,21 @@ class _HomeState extends State<Home> {
               LevelSelectionButton(
                 key: const Key(Strings.beginnerButton),
                 name: Strings.beginnerButton,
-                handleTap: appPrint,
+                handleTap: toBeginnerMovies,
                 backgroundColor: AppColors.beginner,
               ),
               AppSpacer(height: 24.h),
               LevelSelectionButton(
                 key: const Key(Strings.advancedButton),
                 name: Strings.advancedButton,
-                handleTap: appPrint,
+                handleTap: toAdvancedMovies,
                 backgroundColor: AppColors.advanced,
               ),
               AppSpacer(height: 24.h),
               LevelSelectionButton(
                 key: const Key(Strings.demonButton),
                 name: Strings.demonButton,
-                handleTap: appPrint,
+                handleTap: toDemonMovies,
                 backgroundColor: AppColors.demon,
               ),
             ],
