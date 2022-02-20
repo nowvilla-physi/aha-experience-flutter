@@ -23,6 +23,8 @@ class MovieList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
         return MovieSelectButton(item: items[index], handleTap: tap);
       },

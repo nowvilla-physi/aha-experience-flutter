@@ -38,7 +38,7 @@ class _MoviesState extends State<Movies> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Container(
             padding: EdgeInsets.symmetric(
               horizontal: Dimens.allPadding.w,
@@ -59,12 +59,10 @@ class _MoviesState extends State<Movies> {
                 ],
               ),
               AppSpacer(height: 24.h),
-              Flexible(
-                child: MovieList(
-                  items: items,
-                  backgroundColor: Colors.white,
-                ),
-              )
+              MovieList(
+                items: items,
+                backgroundColor: Colors.white,
+              ),
             ])),
       ),
     );
