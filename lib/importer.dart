@@ -3,6 +3,7 @@ export 'component/action_button.dart';
 export 'component/level_select_button.dart';
 export 'component/movie_select_button.dart';
 export 'component/movie _list.dart';
+export 'component/overlay_loading.dart';
 export 'component/spacer.dart';
 export 'package:aha_experience/model/model.dart';
 export 'package:aha_experience/resource/colors.dart';
