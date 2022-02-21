@@ -5,13 +5,10 @@ import 'package:aha_experience/importer.dart';
 /// ムービー選択ボタン
 ///
 /// タップするとムービー再生画面に遷移する。
-/// データのアイテム[item]、タップイベント[handleTap]を受け取る。
+/// データのアイテム[item]を受け取る。
 class MovieSelectButton extends StatefulWidget {
-  const MovieSelectButton(
-      {Key? key, required this.item, required this.handleTap})
-      : super(key: key);
+  const MovieSelectButton({Key? key, required this.item}) : super(key: key);
   final DataItem item;
-  final Function handleTap;
 
   @override
   State<MovieSelectButton> createState() => _MovieSelectButtonState();
@@ -36,6 +33,14 @@ class _MovieSelectButtonState extends State<MovieSelectButton> {
     }
   }
 
+  void showMoviePlayer() {
+    Navigator.pushNamed(
+      context,
+      Strings.moviePlayerPath,
+      arguments: widget.item,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final item = widget.item;
@@ -56,7 +61,7 @@ class _MovieSelectButtonState extends State<MovieSelectButton> {
               borderRadius: BorderRadius.circular(Dimens.allBorderRadius),
             ),
           ),
-          onPressed: item.isLocked ? null : () => widget.handleTap(),
+          onPressed: item.isLocked ? null : () => showMoviePlayer(),
         ),
       ),
       AppSpacer(height: Dimens.movieItemMarginVertical.h),

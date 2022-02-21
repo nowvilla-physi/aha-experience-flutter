@@ -11,3 +11,4 @@ export 'package:aha_experience/resource/strings.dart';
 export 'package:aha_experience/router/router.dart';
 export 'view/home.dart';
 export 'view/movies.dart';
+export 'view/movie_player.dart';
