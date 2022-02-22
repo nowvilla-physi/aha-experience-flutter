@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:aha_experience/importer.dart';
 
 /// レベル選択ボタン
@@ -16,17 +15,13 @@ class MovieList extends StatelessWidget {
   final List<DataItem> items;
   final Color backgroundColor;
 
-  void tap() {
-    print("#");
-  }
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
-        return MovieSelectButton(item: items[index], handleTap: tap);
+        return MovieSelectButton(item: items[index]);
       },
       itemCount: items.length,
     );

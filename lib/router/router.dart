@@ -8,26 +8,22 @@ import 'package:aha_experience/importer.dart';
 class AppRouter {
   final Map<String, Widget Function(BuildContext)> config = {
     Strings.homePath: (BuildContext context) => const Home(
+          key: Key(Strings.appTitle),
           title: Strings.appTitle,
         ),
     Strings.beginnerMoviesPath: (BuildContext context) => const Movies(
         key: Key(Strings.beginnerMoviesPath),
         level: Strings.beginner,
         title: Strings.beginnerMoviesTitle),
-    // TODO 遷移画面を変更する
     Strings.advancedMoviesPath: (BuildContext context) => const Movies(
         key: Key(Strings.advancedMoviesPath),
         level: Strings.advanced,
         title: Strings.advancedMoviesTitle),
-    // TODO 遷移画面を変更する
     Strings.demonMoviesPath: (BuildContext context) => const Movies(
         key: Key(Strings.demonMoviesPath),
         level: Strings.demon,
         title: Strings.demonMoviesTitle),
-    // TODO 遷移画面を変更する
-    Strings.moviePlayerPath: (BuildContext context) => const Home(
-          title: '2w',
-        ),
+    Strings.moviePlayerPath: (BuildContext context) => const MoviePlayer(),
     // TODO 遷移画面を変更する
     Strings.answerPath: (BuildContext context) => const Home(
           title: '2w3',

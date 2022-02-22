@@ -8,5 +8,7 @@ class AppColors {
   static const demon = Color(0xffee2b2c);
   static const gray = Color(0xffbdbfc1);
   static const white = Color(0xffffffff);
+  static const blue = Color(0xff00c3ff);
   static const disabled = Color(0xffffffff);
+  static const answer = Color(0xffff4f4f);
 }
