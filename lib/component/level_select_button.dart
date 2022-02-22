@@ -34,7 +34,7 @@ class LevelSelectionButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(Dimens.allBorderRadius),
           ),
         ),
-        onPressed: () => handleTap(),
+        onPressed: () => handleTap(context),
       ),
     );
   }

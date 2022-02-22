@@ -24,9 +24,9 @@ class AppRouter {
         level: Strings.demon,
         title: Strings.demonMoviesTitle),
     Strings.moviePlayerPath: (BuildContext context) => const MoviePlayer(),
-    // TODO 遷移画面を変更する
-    Strings.answerPath: (BuildContext context) => const Home(
-          title: '2w3',
-        ),
+    Strings.answerPath: (BuildContext context) => const Answer(
+      key: Key(Strings.answerTitle),
+      title: Strings.answerTitle,
+    ),
   };
 }

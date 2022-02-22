@@ -4,6 +4,7 @@ class Strings {
   static const beginnerMoviesTitle = "脳トレ - アハ!!体験 初級編 - ";
   static const advancedMoviesTitle = "脳トレ - アハ!!体験 上級編 -";
   static const demonMoviesTitle = "脳トレ - アハ!!体験 鬼級編 -";
+  static const answerTitle = "脳トレ - アハ!!体験 回答 -";
 
   // button.
   static const beginnerButton = "初級編";
