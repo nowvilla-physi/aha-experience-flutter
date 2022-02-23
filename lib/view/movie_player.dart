@@ -153,7 +153,7 @@ class _MoviePlayerState extends State<MoviePlayer> {
   void _initializeMoviePlayer() {
     _controller.initialize();
     _controller.seekTo(Duration.zero).then((_) => _controller.pause());
-}
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -192,33 +192,66 @@ class _MoviePlayerState extends State<MoviePlayer> {
                     allowScrubbing: true,
                   ),
                   AppSpacer(height: 32.h),
-                  ActionButton(
-                    name:
-                        _isFinished ? Strings.retryButton : Strings.playButton,
-                    textColor: AppColors.white,
-                    backgroundColor: AppColors.blue,
-                    handleTap: _playMovie,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          horizontal:
+                              Dimens.moviePlayerActionButtonMarginHorizontal.w,
+                        ),
+                        child: ActionButton(
+                          name: _isFinished
+                              ? Strings.retryButton
+                              : Strings.playButton,
+                          textColor: AppColors.white,
+                          backgroundColor: AppColors.blue,
+                          handleTap: _playMovie,
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          horizontal:
+                              Dimens.moviePlayerActionButtonMarginHorizontal.w,
+                        ),
+                        child: ActionButton(
+                          name: Strings.hintButton,
+                          textColor: AppColors.white,
+                          backgroundColor: AppColors.orange,
+                          handleTap: _showHintDialog,
+                        ),
+                      ),
+                    ],
                   ),
-                  AppSpacer(height: 16.h),
-                  ActionButton(
-                    name: Strings.hintButton,
-                    textColor: AppColors.white,
-                    backgroundColor: AppColors.orange,
-                    handleTap: _showHintDialog,
-                  ),
-                  AppSpacer(height: 16.h),
-                  ActionButton(
-                    name: Strings.answerButton,
-                    textColor: AppColors.white,
-                    backgroundColor: AppColors.answer,
-                    handleTap: _showAnswerDialog,
-                  ),
-                  AppSpacer(height: 16.h),
-                  ActionButton(
-                    name: Strings.backButton,
-                    textColor: AppColors.baseColor,
-                    backgroundColor: AppColors.white,
-                    handleTap: _toMovieList,
+                  AppSpacer(height: 24.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          horizontal:
+                              Dimens.moviePlayerActionButtonMarginHorizontal.w,
+                        ),
+                        child: ActionButton(
+                          name: Strings.answerButton,
+                          textColor: AppColors.white,
+                          backgroundColor: AppColors.answer,
+                          handleTap: _showAnswerDialog,
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          horizontal:
+                              Dimens.moviePlayerActionButtonMarginHorizontal.w,
+                        ),
+                        child: ActionButton(
+                          name: Strings.backButton,
+                          textColor: AppColors.baseColor,
+                          backgroundColor: AppColors.white,
+                          handleTap: _toMovieList,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
