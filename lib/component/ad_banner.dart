@@ -37,7 +37,7 @@ class AdBanner extends StatelessWidget {
       ..load();
 
     return SizedBox(
-        width: banner.size.width.toDouble(),
+        width: double.infinity,
         height: banner.size.height.toDouble(),
         child: AdWidget(ad: banner));
   }

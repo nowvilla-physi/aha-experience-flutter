@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:aha_experience/importer.dart';
 
 void main() async {
@@ -11,6 +12,9 @@ void main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+
+  // 広告の初期化
+  MobileAds.instance.initialize();
 
   runApp(const MaterialApp(
     home: Scaffold(
