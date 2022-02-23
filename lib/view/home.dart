@@ -1,74 +1,29 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:aha_experience/importer.dart';
 
-class Home extends StatefulWidget {
+class Home extends ConsumerWidget {
   const Home({Key? key, required this.title}) : super(key: key);
   final String title;
 
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  List<DataItem> _beginnerDataItems = [];
-  List<DataItem> _advancedDataItems = [];
-  List<DataItem> _demonDataItems = [];
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    setState(() {
-      _loadDataItemsFromJson();
-    });
+  void toBeginnerMovies(BuildContext context) {
+    Navigator.of(context).pushNamed(Strings.beginnerMoviesPath);
   }
 
-  Future<void> _loadDataItemsFromJson() async {
-    String jsonStr = await rootBundle.loadString("assets/json/data.json");
-    final data = json.decode(jsonStr)["data"];
-    final dataItems = List<DataItem>.from(data
-        .map((value) => DataItem.fromJson(Map<String, dynamic>.from(value)))
-        .toList());
-    _beginnerDataItems = _filterEachLevel(dataItems, "beginner");
-    _advancedDataItems = _filterEachLevel(dataItems, "advanced");
-    _demonDataItems = _filterEachLevel(dataItems, "demon");
+  void toAdvancedMovies(BuildContext context) {
+    Navigator.of(context).pushNamed(Strings.advancedMoviesPath);
   }
 
-  List<DataItem> _filterEachLevel(List<DataItem> data, String level) {
-    return data.where((item) => item.level == level).toList();
-  }
-
-  void toBeginnerMovies() {
-    Navigator.pushNamed(
-      context,
-      Strings.beginnerMoviesPath,
-      arguments: _beginnerDataItems,
-    );
-  }
-
-  void toAdvancedMovies() {
-    Navigator.pushNamed(
-      context,
-      Strings.advancedMoviesPath,
-      arguments: _advancedDataItems,
-    );
-  }
-
-  void toDemonMovies() {
-    Navigator.pushNamed(
-      context,
-      Strings.demonMoviesPath,
-      arguments: _demonDataItems,
-    );
+  void toDemonMovies(BuildContext context) {
+    Navigator.of(context).pushNamed(Strings.demonMoviesPath);
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(title),
       ),
       body: Center(
         child: Container(

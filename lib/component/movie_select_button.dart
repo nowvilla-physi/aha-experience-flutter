@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:aha_experience/importer.dart';
 
@@ -6,15 +7,10 @@ import 'package:aha_experience/importer.dart';
 ///
 /// タップするとムービー再生画面に遷移する。
 /// データのアイテム[item]を受け取る。
-class MovieSelectButton extends StatefulWidget {
+class MovieSelectButton extends ConsumerWidget {
   const MovieSelectButton({Key? key, required this.item}) : super(key: key);
   final DataItem item;
 
-  @override
-  State<MovieSelectButton> createState() => _MovieSelectButtonState();
-}
-
-class _MovieSelectButtonState extends State<MovieSelectButton> {
   String _createButtonName(DataItem item) {
     final filledZeroId = "${item.id}".padLeft(2, "0");
     return item.isLocked ? Strings.locked : "Aha Film #$filledZeroId";
@@ -33,17 +29,8 @@ class _MovieSelectButtonState extends State<MovieSelectButton> {
     }
   }
 
-  void showMoviePlayer() {
-    Navigator.pushNamed(
-      context,
-      Strings.moviePlayerPath,
-      arguments: widget.item,
-    );
-  }
-
   @override
-  Widget build(BuildContext context) {
-    final item = widget.item;
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(children: <Widget>[
       SizedBox(
         width: double.infinity,
@@ -61,7 +48,13 @@ class _MovieSelectButtonState extends State<MovieSelectButton> {
               borderRadius: BorderRadius.circular(Dimens.allBorderRadius),
             ),
           ),
-          onPressed: item.isLocked ? null : () => showMoviePlayer(),
+          onPressed: item.isLocked
+              ? null
+              : () => Navigator.pushNamed(
+                    context,
+                    Strings.moviePlayerPath,
+                    arguments: MoviePlayerArguments(item, ref),
+                  ),
         ),
       ),
       AppSpacer(height: Dimens.movieItemMarginVertical.h),
