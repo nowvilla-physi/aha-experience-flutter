@@ -14,6 +14,8 @@ class Strings {
   static const playButton = "再生する";
   static const retryButton = "もう一度";
   static const answerButton = "回答を見る";
+  static const nextButton = "次の問題へ";
+  static const homeButton = "ホームへ";
   static const locked = "🔒LOCKED";
 
   // level.
@@ -28,4 +30,8 @@ class Strings {
   static const demonMoviesPath = "/demon/movies";
   static const moviePlayerPath = "/movie/player";
   static const answerPath = "/answer";
+
+  // wording.
+  static const answer = "回答";
+
 }

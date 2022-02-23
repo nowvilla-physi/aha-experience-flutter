@@ -73,7 +73,7 @@ class _MoviePlayerState extends State<MoviePlayer> {
   }
 
   void toAnswer() {
-    Navigator.of(context).pushNamed(Strings.answerPath);
+    Navigator.pushNamed(context, Strings.answerPath, arguments: widget.item);
   }
 
   void toMovieList() {

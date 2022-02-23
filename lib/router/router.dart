@@ -36,13 +36,6 @@ class AppRouter {
             title: Strings.demonMoviesTitle,
             items: ref.watch(demonDataItemsProvider.notifier).state,
           ),
-      // Strings.moviePlayerPath: (BuildContext context) => const MoviePlayer(
-      //   item: ,
-      // ),
-      Strings.answerPath: (BuildContext context) => const Answer(
-            key: Key(Strings.answerTitle),
-            title: Strings.answerTitle,
-          ),
     };
   }
 
@@ -52,6 +45,16 @@ class AppRouter {
       return MaterialPageRoute(
         builder: (context) {
           return MoviePlayer(item: args);
+        },
+      );
+    } else if (settings.name == Strings.answerPath) {
+      final args = settings.arguments as DataItem;
+      return MaterialPageRoute(
+        builder: (context) {
+          return Answer(
+            item: args,
+            title: Strings.answerTitle,
+          );
         },
       );
     }
