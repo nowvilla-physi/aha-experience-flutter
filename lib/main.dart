@@ -6,6 +6,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:aha_experience/importer.dart';
 
 void main() async {
+  // 向きを縦に固定する
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+
   runApp(const MaterialApp(
     home: Scaffold(
       body: Center(
