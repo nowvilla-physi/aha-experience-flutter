@@ -7,9 +7,11 @@ class Movies extends StatefulWidget {
     Key? key,
     required this.title,
     required this.level,
+    required this.items,
   }) : super(key: key);
   final String title;
   final String level;
+  final List<DataItem> items;
 
   @override
   State<Movies> createState() => _MoviesState();
@@ -31,16 +33,11 @@ class _MoviesState extends State<Movies> {
 
   void toHome() {
     Navigator.of(context).pushNamedAndRemoveUntil(
-        Strings.homePath,
-        (Route<dynamic> route) => false
-    );
+        Strings.homePath, (Route<dynamic> route) => false);
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<DataItem> items =
-        ModalRoute.of(context)?.settings.arguments as List<DataItem>;
-
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -62,13 +59,13 @@ class _MoviesState extends State<Movies> {
                   ),
                   SizedBox(
                     height: 80.h,
-                    child: Image.asset(_switchImage(items[0])),
+                    child: Image.asset(_switchImage(widget.items[0])),
                   )
                 ],
               ),
               AppSpacer(height: 24.h),
               MovieList(
-                items: items,
+                items: widget.items,
                 backgroundColor: Colors.white,
               ),
               ActionButton(

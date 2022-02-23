@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:aha_experience/importer.dart';
 
-final countProvider = StateProvider((ref) => 0);
-final dataItemsProvider = StateProvider((ref) => []);
-final beginnerDataItemsProvider = StateProvider((ref) => []);
-final advancedDataItemsProvider = StateProvider((ref) => []);
-final demonDataItemsProvider = StateProvider((ref) => []);
+final dataItemsProvider = StateProvider((ref) => [] as List<DataItem>);
+final beginnerDataItemsProvider = StateProvider((ref) => [] as List<DataItem>);
+final advancedDataItemsProvider = StateProvider((ref) => [] as List<DataItem>);
+final demonDataItemsProvider = StateProvider((ref) => [] as List<DataItem>);

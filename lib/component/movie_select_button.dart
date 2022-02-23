@@ -33,14 +33,6 @@ class _MovieSelectButtonState extends State<MovieSelectButton> {
     }
   }
 
-  void showMoviePlayer() {
-    Navigator.pushNamed(
-      context,
-      Strings.moviePlayerPath,
-      arguments: widget.item,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final item = widget.item;
@@ -61,7 +53,10 @@ class _MovieSelectButtonState extends State<MovieSelectButton> {
               borderRadius: BorderRadius.circular(Dimens.allBorderRadius),
             ),
           ),
-          onPressed: item.isLocked ? null : () => showMoviePlayer(),
+          onPressed: item.isLocked
+              ? null
+              : () => Navigator.pushNamed(context, Strings.moviePlayerPath,
+                  arguments: item),
         ),
       ),
       AppSpacer(height: Dimens.movieItemMarginVertical.h),
