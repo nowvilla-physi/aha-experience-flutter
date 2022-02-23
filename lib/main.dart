@@ -4,10 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:aha_experience/importer.dart';
 
-int count() {
-  return 1;
-}
-
 void main() async {
   runApp(const MaterialApp(
     home: Scaffold(
@@ -17,7 +13,9 @@ void main() async {
     ),
   ));
 
-  final List<DataItem> dataItems = await _loadDataItemsFromJson();
+  final cache = Cache();
+  final savedData = await cache.read();
+  final List<DataItem> dataItems = savedData ?? await _loadDataItemsFromJson();
   final List<DataItem> beginnerDataItems =
       _filterEachLevel(dataItems, "beginner");
   final List<DataItem> advancedDataItems =

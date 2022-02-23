@@ -90,6 +90,7 @@ class _MoviePlayerState extends State<MoviePlayer> {
           .map((item) => item.id == nextId ? nextDataItem : item)
           .toList();
       ref.read(dataItemsProvider.notifier).state = newData;
+      Cache().savedData(newData);
     }
     Navigator.pushNamed(context, Strings.answerPath, arguments: widget.item);
   }

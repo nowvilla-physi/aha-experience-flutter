@@ -1,5 +1,5 @@
-import 'package:aha_experience/importer.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:aha_experience/importer.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 class DataItem {
   int id;
@@ -13,12 +13,23 @@ class DataItem {
       this.answer);
 
   DataItem.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        level = json['level'],
-        isLocked = json['isLocked'],
-        isLastOfLevel = json['isLastOfLevel'],
-        hint = json['hint'],
-        answer = json['answer'];
+      : id = json["id"],
+        level = json["level"],
+        isLocked = json["isLocked"],
+        isLastOfLevel = json["isLastOfLevel"],
+        hint = json["hint"],
+        answer = json["answer"];
+
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "level": level,
+      "isLocked": isLocked,
+      "isLastOfLevel": isLastOfLevel,
+      "hint": hint,
+      "answer": answer,
+    };
+  }
 
   @override
   int get hashCode =>
