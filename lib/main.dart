@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:aha_experience/importer.dart';
 
@@ -13,6 +14,10 @@ void main() async {
     ),
   ));
 
+  // envファイルの読みこみ
+  await dotenv.load(fileName: ".env");
+
+  // ローカルデータの読み込み
   final cache = Cache();
   final savedData = await cache.read();
   final List<DataItem> dataItems = savedData ?? await _loadDataItemsFromJson();

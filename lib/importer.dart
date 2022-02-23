@@ -1,4 +1,5 @@
 export 'component/action_button.dart';
+export 'component/ad_banner.dart';
 export 'component/alert_dialog.dart';
 export 'component/app.dart';
 export 'component/level_select_button.dart';

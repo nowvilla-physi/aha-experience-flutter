@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:video_player/video_player.dart';
 import 'package:aha_experience/importer.dart';
 
@@ -180,6 +181,10 @@ class _MoviePlayerState extends State<MoviePlayer> {
             ),
           ),
           OverlayLoading(visible: _isLoading),
+          const Align(
+            alignment: Alignment.bottomCenter,
+            child: AdBanner(size: AdSize.fullBanner),
+          )
         ],
       ),
     );
