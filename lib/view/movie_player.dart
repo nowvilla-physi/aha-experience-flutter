@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:video_player/video_player.dart';
 import 'package:aha_experience/importer.dart';
 
 class MoviePlayer extends StatefulWidget {
-  MoviePlayer({Key? key, required this.item}) : super(key: key);
+  MoviePlayer({
+    Key? key,
+    required this.item,
+    required this.ref,
+  }) : super(key: key);
   DataItem item;
+  WidgetRef ref;
 
   @override
   State<MoviePlayer> createState() => _MoviePlayerState();
@@ -73,6 +79,18 @@ class _MoviePlayerState extends State<MoviePlayer> {
   }
 
   void toAnswer() {
+    final id = widget.item.id;
+    final ref = widget.ref;
+    if (id > 0 && id < 38) {
+      final nextId = id + 1;
+      final dataItems = ref.read(dataItemsProvider.notifier).state;
+      final nextDataItem = dataItems.firstWhere((item) => item.id == nextId);
+      nextDataItem.isLocked = false;
+      final newData = dataItems
+          .map((item) => item.id == nextId ? nextDataItem : item)
+          .toList();
+      ref.read(dataItemsProvider.notifier).state = newData;
+    }
     Navigator.pushNamed(context, Strings.answerPath, arguments: widget.item);
   }
 

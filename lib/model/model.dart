@@ -1,3 +1,6 @@
+import 'package:aha_experience/importer.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 class DataItem {
   int id;
   String level;
@@ -41,4 +44,24 @@ class DataItem {
   String toString() {
     return "$id, $level, $isLocked, $isLastOfLevel, $hint, $answer";
   }
+}
+
+class MoviePlayerArguments {
+  DataItem item;
+  WidgetRef ref;
+
+  MoviePlayerArguments(this.item, this.ref);
+
+  @override
+  int get hashCode => item.hashCode ^ ref.hashCode;
+
+  @override
+  bool operator ==(Object other) {
+    return other is MoviePlayerArguments &&
+        item == other.item &&
+        ref == other.ref;
+  }
+
+  @override
+  String toString() => "$item, $ref";
 }

@@ -41,10 +41,13 @@ class AppRouter {
 
   MaterialPageRoute? createGenerateRoute(RouteSettings settings) {
     if (settings.name == Strings.moviePlayerPath) {
-      final args = settings.arguments as DataItem;
+      final args = settings.arguments as MoviePlayerArguments;
       return MaterialPageRoute(
         builder: (context) {
-          return MoviePlayer(item: args);
+          return MoviePlayer(
+            item: args.item,
+            ref: args.ref,
+          );
         },
       );
     } else if (settings.name == Strings.answerPath) {

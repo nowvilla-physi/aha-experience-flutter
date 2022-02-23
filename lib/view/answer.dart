@@ -80,17 +80,18 @@ class Answer extends StatelessWidget {
                         handleTap: toHome,
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.symmetric(
-                        horizontal: Dimens.actionButtonMarginHorizontal.w,
+                    if (item.id > 0 && item.id < 38)
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          horizontal: Dimens.actionButtonMarginHorizontal.w,
+                        ),
+                        child: ActionButton(
+                          name: Strings.nextButton,
+                          textColor: AppColors.white,
+                          backgroundColor: AppColors.blue,
+                          handleTap: toMovies,
+                        ),
                       ),
-                      child: ActionButton(
-                        name: Strings.nextButton,
-                        textColor: AppColors.white,
-                        backgroundColor: AppColors.blue,
-                        handleTap: toMovies,
-                      ),
-                    ),
                   ])
             ],
           ),
