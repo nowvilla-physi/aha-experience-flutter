@@ -22,12 +22,12 @@ class ActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width / 3,
+      width: MediaQuery.of(context).size.width / 2.8,
       height: 48.h,
       child: ElevatedButton(
         child: Text(
           name,
-          style: TextStyle(fontSize: 20.sp),
+          style: TextStyle(fontSize: 18.sp),
         ),
         style: ElevatedButton.styleFrom(
           primary: backgroundColor,

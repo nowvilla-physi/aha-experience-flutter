@@ -2,17 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:aha_experience/importer.dart';
 
 class AppAlertDialog {
-  const AppAlertDialog(
-      {Key? key,
-      required this.title,
-      required this.content,
-      required this.handleClick,
-      required this.context});
+  const AppAlertDialog({
+    Key? key,
+    required this.title,
+    required this.content,
+    required this.context,
+    this.handleClick,
+    this.positiveName,
+    this.negativeName,
+  });
 
   final String title;
   final String content;
-  final Function handleClick;
   final BuildContext context;
+  final Function? handleClick;
+  final String? positiveName;
+  final String? negativeName;
 
   void _dismiss() {
     Navigator.pop(context);
@@ -20,7 +25,9 @@ class AppAlertDialog {
 
   void _onClick() {
     _dismiss();
-    handleClick();
+    if (handleClick != null) {
+      handleClick!();
+    }
   }
 
   void showAlertDialog() {
@@ -32,11 +39,11 @@ class AppAlertDialog {
           content: Text(content),
           actions: [
             TextButton(
-              child: const Text(Strings.cancel),
+              child: Text(negativeName ?? Strings.cancel),
               onPressed: () => _dismiss(),
             ),
             TextButton(
-              child: const Text(Strings.ok),
+              child: Text(positiveName ?? Strings.ok),
               onPressed: () => _onClick(),
             ),
           ],
