@@ -17,6 +17,8 @@ class Strings {
   static const nextButton = "次の問題へ";
   static const homeButton = "ホームへ";
   static const locked = "🔒LOCKED";
+  static const cancel = "いいえ";
+  static const ok = "はい";
 
   // level.
   static const beginner = "初級編";
@@ -33,5 +35,6 @@ class Strings {
 
   // wording.
   static const answer = "回答";
-
+  static const watchAnswerTitle = "回答を見ますか？";
+  static const watchAnswerContent = "回答を見ると次の問題がアンロックされます。";
 }

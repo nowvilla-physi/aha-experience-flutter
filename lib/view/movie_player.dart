@@ -76,6 +76,15 @@ class _MoviePlayerState extends State<MoviePlayer> {
     Navigator.pushNamed(context, Strings.answerPath, arguments: widget.item);
   }
 
+  void showDialog() {
+    AppAlertDialog(
+      title: Strings.watchAnswerTitle,
+      content: Strings.watchAnswerContent,
+      handleClick: toAnswer,
+      context: context,
+    ).showAlertDialog();
+  }
+
   void toMovieList() {
     switch (widget.item.level) {
       case "beginner":
@@ -138,7 +147,7 @@ class _MoviePlayerState extends State<MoviePlayer> {
                     name: Strings.answerButton,
                     textColor: AppColors.white,
                     backgroundColor: AppColors.answer,
-                    handleTap: toAnswer,
+                    handleTap: showDialog,
                   ),
                   AppSpacer(height: 16.h),
                   ActionButton(
