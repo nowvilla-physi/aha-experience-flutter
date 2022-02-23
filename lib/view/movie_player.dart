@@ -20,12 +20,14 @@ class MoviePlayer extends StatefulWidget {
 
 class _MoviePlayerState extends State<MoviePlayer> {
   late VideoPlayerController _controller;
-  bool _isLoading = false;
+  bool _isLoading = true;
   bool _isFinished = false;
+  late final AdReward adReward;
 
   @override
   void initState() {
     super.initState();
+    // movie_playerの初期化
     _controller =
         VideoPlayerController.asset("assets/movies/aha${widget.item.id}.mp4");
     _controller.initialize().then((_) {
@@ -42,6 +44,9 @@ class _MoviePlayerState extends State<MoviePlayer> {
       });
     });
 
+    // reward広告の初期化
+    adReward = AdReward(handleWatchAd: _showHint);
+    adReward.createRewardedAd();
     super.initState();
   }
 
@@ -56,7 +61,7 @@ class _MoviePlayerState extends State<MoviePlayer> {
     return item.isLocked ? Strings.locked : "Aha Film #$filledZeroId";
   }
 
-  void playMovie() async {
+  void _playMovie() async {
     // ムービー再生が終わった場合
     final value = _controller.value;
     if (!value.isPlaying &&
@@ -64,8 +69,7 @@ class _MoviePlayerState extends State<MoviePlayer> {
       setState(() {
         _isLoading = true;
       });
-      _controller.initialize();
-      _controller.seekTo(Duration.zero).then((_) => _controller.pause());
+      _initializeMoviePlayer();
       await Future.delayed(const Duration(milliseconds: 2000), () {});
       setState(() {
         _isFinished = false;
@@ -79,7 +83,16 @@ class _MoviePlayerState extends State<MoviePlayer> {
     }
   }
 
-  void toAnswer() {
+  void _showAnswerDialog() {
+    AppAlertDialog(
+      title: Strings.watchAnswerTitle,
+      content: Strings.watchAnswerContent,
+      handleClick: _toAnswer,
+      context: context,
+    ).showAlertDialog();
+  }
+
+  void _toAnswer() {
     final id = widget.item.id;
     final ref = widget.ref;
     if (id > 0 && id < 38) {
@@ -94,18 +107,33 @@ class _MoviePlayerState extends State<MoviePlayer> {
       Cache().savedData(newData);
     }
     Navigator.pushNamed(context, Strings.answerPath, arguments: widget.item);
+    _initializeMoviePlayer();
   }
 
-  void showDialog() {
+  void _showHintDialog() {
     AppAlertDialog(
-      title: Strings.watchAnswerTitle,
-      content: Strings.watchAnswerContent,
-      handleClick: toAnswer,
+      title: Strings.watchHintTitle,
+      content: Strings.watchHintContent,
+      handleClick: _showRewardedAd,
       context: context,
     ).showAlertDialog();
   }
 
-  void toMovieList() {
+  void _showRewardedAd() {
+    adReward.showRewardedAd();
+  }
+
+  void _showHint() {
+    AppAlertDialog(
+      title: Strings.hintTitle,
+      content: widget.item.hint,
+      context: context,
+      positiveName: Strings.close,
+      negativeName: Strings.understand,
+    ).showAlertDialog();
+  }
+
+  void _toMovieList() {
     switch (widget.item.level) {
       case "beginner":
         Navigator.of(context).pushNamed(Strings.beginnerMoviesPath);
@@ -119,10 +147,19 @@ class _MoviePlayerState extends State<MoviePlayer> {
       default:
         Navigator.of(context).pushNamed(Strings.beginnerMoviesPath);
     }
+    _initializeMoviePlayer();
   }
+
+  void _initializeMoviePlayer() {
+    _controller.initialize();
+    _controller.seekTo(Duration.zero).then((_) => _controller.pause());
+}
 
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      _isLoading = false;
+    });
     return Scaffold(
       appBar: AppBar(
         title: Text(_createButtonName(widget.item)),
@@ -154,27 +191,34 @@ class _MoviePlayerState extends State<MoviePlayer> {
                     _controller,
                     allowScrubbing: true,
                   ),
-                  AppSpacer(height: 48.h),
+                  AppSpacer(height: 32.h),
                   ActionButton(
                     name:
                         _isFinished ? Strings.retryButton : Strings.playButton,
                     textColor: AppColors.white,
                     backgroundColor: AppColors.blue,
-                    handleTap: playMovie,
+                    handleTap: _playMovie,
+                  ),
+                  AppSpacer(height: 16.h),
+                  ActionButton(
+                    name: Strings.hintButton,
+                    textColor: AppColors.white,
+                    backgroundColor: AppColors.orange,
+                    handleTap: _showHintDialog,
                   ),
                   AppSpacer(height: 16.h),
                   ActionButton(
                     name: Strings.answerButton,
                     textColor: AppColors.white,
                     backgroundColor: AppColors.answer,
-                    handleTap: showDialog,
+                    handleTap: _showAnswerDialog,
                   ),
                   AppSpacer(height: 16.h),
                   ActionButton(
                     name: Strings.backButton,
                     textColor: AppColors.baseColor,
                     backgroundColor: AppColors.white,
-                    handleTap: toMovieList,
+                    handleTap: _toMovieList,
                   ),
                 ],
               ),

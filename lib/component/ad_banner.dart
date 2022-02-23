@@ -3,7 +3,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'dart:io';
 
-// StatelessWidgetを継承して作成
 class AdBanner extends StatelessWidget {
   const AdBanner({
     Key? key,
@@ -12,37 +11,34 @@ class AdBanner extends StatelessWidget {
 
   final AdSize size;
 
+  static String get bannerAdUnitId {
+    if (Platform.isAndroid) {
+      return dotenv.get("ANDROID_ADSENSE_BANNER_ID");
+    } else {
+      return dotenv.get("IOS_ADSENSE_BANNER_ID");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final banner = BannerAd(
         size: size,
         adUnitId: BannerAd.testAdUnitId,
+        // adUnitId: bannerAdUnitId, // TODO 本番はこっちに切り替える
         listener: BannerAdListener(
-          onAdLoaded: (Ad ad) => print('Ad loaded.'),
+          onAdLoaded: (Ad ad) => print('Banner ad loaded.'),
           onAdFailedToLoad: (Ad ad, LoadAdError error) {
-            print('Ad failed to load: $error');
+            print('Banner Ad failed to load: $error');
           },
-          onAdOpened: (Ad ad) => print('Ad opened.'),
-          onAdClosed: (Ad ad) => print('Ad closed.'),
+          onAdOpened: (Ad ad) => print('Banner Ad opened.'),
+          onAdClosed: (Ad ad) => print('Banner Ad closed.'),
         ),
         request: const AdRequest())
       ..load();
 
-    // 戻り値はContainerで包んで返す
     return SizedBox(
         width: banner.size.width.toDouble(),
         height: banner.size.height.toDouble(),
         child: AdWidget(ad: banner));
-  }
-
-  static String get bannerAdUnitId {
-    if (Platform.isAndroid) {
-      return dotenv.get("ANDROID_ADSENSE_ID");
-    } else if (Platform.isIOS) {
-      return dotenv.get("IOS_ADSENSE_ID");
-    } else {
-      // iosでもAndroidでもない場合はテスト用のIdを返す
-      return BannerAd.testAdUnitId;
-    }
   }
 }
