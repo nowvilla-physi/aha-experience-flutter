@@ -5,6 +5,5 @@ class Dimens {
   static const allBorderRadius = 8.0;
   static const defaultSpacerHeight = 16.0;
   static const movieItemMarginVertical = 32.0;
-  static const actionButtonMarginHorizontal = 16.0;
-  static const moviePlayerActionButtonMarginHorizontal = 8.0;
+  static const actionButtonMarginHorizontal = 8.0;
 }
