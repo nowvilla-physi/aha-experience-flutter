@@ -16,10 +16,13 @@ void main() async {
   // 広告の初期化
   MobileAds.instance.initialize();
 
-  runApp(const MaterialApp(
+  runApp(MaterialApp(
     home: Scaffold(
-      body: Center(
-        child: CircularProgressIndicator(),
+      body: Container(
+        color: AppColors.baseColor,
+        child: const Center (
+          child: CircularProgressIndicator(),
+        ),
       ),
     ),
   ));
