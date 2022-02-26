@@ -23,8 +23,7 @@ class AdBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     final banner = BannerAd(
         size: size,
-        adUnitId: BannerAd.testAdUnitId,
-        // adUnitId: bannerAdUnitId, // TODO 本番はこっちに切り替える
+        adUnitId: bannerAdUnitId,
         listener: BannerAdListener(
           onAdLoaded: (Ad ad) => print('Banner ad loaded.'),
           onAdFailedToLoad: (Ad ad, LoadAdError error) {

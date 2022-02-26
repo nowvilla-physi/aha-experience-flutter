@@ -57,11 +57,9 @@ class AdReward {
 
   String get rewardedAdUnitId {
     if (Platform.isAndroid) {
-      return "ca-app-pub-3940256099942544/5224354917";
-      // return dotenv.get("ANDROID_ADSENSE_REWARD_ID"); // TODO 本番はこっちに切り替える
+      return dotenv.get("ANDROID_ADSENSE_REWARD_ID");
     } else {
-      return "ca-app-pub-3940256099942544/1712485313";
-      // return dotenv.get("IOS_ADSENSE_REWARD_ID");  // TODO 本番はこっちに切り替える
+      return dotenv.get("IOS_ADSENSE_REWARD_ID");
     }
   }
 }
