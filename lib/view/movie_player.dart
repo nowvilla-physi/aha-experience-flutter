@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,7 +19,7 @@ class MoviePlayer extends StatefulWidget {
 }
 
 class _MoviePlayerState extends State<MoviePlayer> {
-  late VideoPlayerController _controller;
+  VideoPlayerController? _controller;
   bool _isLoading = false;
   bool _isFinished = false;
   late final AdReward adReward;
@@ -28,20 +29,27 @@ class _MoviePlayerState extends State<MoviePlayer> {
   void initState() {
     super.initState();
     // movie_playerの初期化
-    _controller =
-        VideoPlayerController.asset("assets/movies/aha${widget.item.id}.mp4")
-          ..initialize().then((_) {
-            setState(() {});
-          });
+    Future(() async {
+      FirebaseStorage storage = FirebaseStorage.instance;
+      Reference ref = storage.ref("movies/aha${widget.item.id}.mp4");
+      final url = await ref.getDownloadURL();
 
-    _controller.addListener(() {
-      final value = _controller.value;
-      if (!value.isPlaying &&
-          value.position.inSeconds >= value.duration.inSeconds) {
-        setState(() {
-          _isFinished = true;
+      _controller = VideoPlayerController.network(url)
+        ..initialize().then((_) {
+          setState(() {});
         });
-      }
+
+      _controller?.addListener(() {
+        final value = _controller?.value;
+        if (value != null) {
+          if (!value.isPlaying &&
+              value.position.inSeconds >= value.duration.inSeconds) {
+            setState(() {
+              _isFinished = true;
+            });
+          }
+        }
+      });
     });
 
     // reward広告の初期化
@@ -54,7 +62,8 @@ class _MoviePlayerState extends State<MoviePlayer> {
   @override
   void dispose() {
     super.dispose();
-    _controller.dispose();
+    _controller?.dispose();
+    _controller = null;
   }
 
   String _createButtonName(DataItem item) {
@@ -64,7 +73,10 @@ class _MoviePlayerState extends State<MoviePlayer> {
 
   void _playMovie() async {
     // ムービー再生が終わった場合
-    final value = _controller.value;
+    final value = _controller?.value;
+    if (value == null) {
+      return;
+    }
     if (!value.isPlaying &&
         value.position.inSeconds >= value.duration.inSeconds) {
       setState(() {
@@ -78,7 +90,7 @@ class _MoviePlayerState extends State<MoviePlayer> {
       });
       // ムービーが再生中でない場合
     } else if (!value.isPlaying) {
-      _controller.seekTo(Duration.zero).then((_) => _controller.play());
+      _controller?.seekTo(Duration.zero).then((_) => _controller?.play());
     } else {
       // nop
     }
@@ -117,7 +129,8 @@ class _MoviePlayerState extends State<MoviePlayer> {
     }
     Navigator.pushNamed(context, Strings.answerPath, arguments: widget.item);
     _initializeMoviePlayer();
-    _controller.dispose();
+    _controller?.dispose();
+    _controller = null;
   }
 
   void _showHintDialog() {
@@ -158,116 +171,131 @@ class _MoviePlayerState extends State<MoviePlayer> {
         Navigator.of(context).pushNamed(Strings.beginnerMoviesPath);
     }
     _initializeMoviePlayer();
-    _controller.dispose();
+    _controller?.dispose();
+    _controller = null;
   }
 
   void _initializeMoviePlayer() {
-    _controller.initialize();
-    _controller.seekTo(Duration.zero).then((_) => _controller.pause());
+    _controller?.initialize();
+    _controller?.seekTo(Duration.zero).then((_) => _controller?.pause());
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(_createButtonName(widget.item)),
-      ),
-      body: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          SingleChildScrollView(
-            child: Center(
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 0,
-                  vertical: Dimens.allPadding.h,
-                ),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      _createButtonName(widget.item),
-                      style: TextStyle(
-                        color: AppColors.white,
-                        fontSize: 28.sp,
+    if (_controller != null) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(_createButtonName(widget.item)),
+        ),
+        body: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            SingleChildScrollView(
+              child: Center(
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 0,
+                    vertical: Dimens.allPadding.h,
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        _createButtonName(widget.item),
+                        style: TextStyle(
+                          color: AppColors.white,
+                          fontSize: 28.sp,
+                        ),
                       ),
-                    ),
-                    AppSpacer(height: 16.h),
-                    _controller.value.isInitialized
-                        ? AspectRatio(
-                            aspectRatio: _controller.value.aspectRatio,
-                            child: VideoPlayer(_controller),
-                          )
-                        : Container(),
-                    VideoProgressIndicator(
-                      _controller,
-                      allowScrubbing: false,
-                    ),
-                    AppSpacer(height: 32.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                            horizontal: Dimens.actionButtonMarginHorizontal.w,
+                      AppSpacer(height: 16.h),
+                      _controller!.value.isInitialized
+                          ? AspectRatio(
+                              aspectRatio: _controller!.value.aspectRatio,
+                              child: VideoPlayer(_controller!),
+                            )
+                          : Container(),
+                      VideoProgressIndicator(
+                        _controller!,
+                        allowScrubbing: false,
+                      ),
+                      AppSpacer(height: 32.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.symmetric(
+                              horizontal: Dimens.actionButtonMarginHorizontal.w,
+                            ),
+                            child: ActionButton(
+                              name: _isFinished
+                                  ? Strings.retryButton
+                                  : Strings.playButton,
+                              textColor: AppColors.white,
+                              backgroundColor: AppColors.blue,
+                              handleTap: _playMovie,
+                            ),
                           ),
-                          child: ActionButton(
-                            name: _isFinished
-                                ? Strings.retryButton
-                                : Strings.playButton,
-                            textColor: AppColors.white,
-                            backgroundColor: AppColors.blue,
-                            handleTap: _playMovie,
+                          Container(
+                            margin: EdgeInsets.symmetric(
+                              horizontal: Dimens.actionButtonMarginHorizontal.w,
+                            ),
+                            child: ActionButton(
+                              name: Strings.hintButton,
+                              textColor: AppColors.white,
+                              backgroundColor: AppColors.orange,
+                              handleTap: _showHintDialog,
+                            ),
                           ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                            horizontal: Dimens.actionButtonMarginHorizontal.w,
+                        ],
+                      ),
+                      AppSpacer(height: 24.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.symmetric(
+                              horizontal: Dimens.actionButtonMarginHorizontal.w,
+                            ),
+                            child: ActionButton(
+                              name: Strings.answerButton,
+                              textColor: AppColors.white,
+                              backgroundColor: AppColors.answer,
+                              handleTap: _showAnswerDialog,
+                            ),
                           ),
-                          child: ActionButton(
-                            name: Strings.hintButton,
-                            textColor: AppColors.white,
-                            backgroundColor: AppColors.orange,
-                            handleTap: _showHintDialog,
+                          Container(
+                            margin: EdgeInsets.symmetric(
+                              horizontal: Dimens.actionButtonMarginHorizontal.w,
+                            ),
+                            child: ActionButton(
+                              name: Strings.backButton,
+                              textColor: AppColors.baseColor,
+                              backgroundColor: AppColors.white,
+                              handleTap: _toMovieList,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    AppSpacer(height: 24.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                            horizontal: Dimens.actionButtonMarginHorizontal.w,
-                          ),
-                          child: ActionButton(
-                            name: Strings.answerButton,
-                            textColor: AppColors.white,
-                            backgroundColor: AppColors.answer,
-                            handleTap: _showAnswerDialog,
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                            horizontal: Dimens.actionButtonMarginHorizontal.w,
-                          ),
-                          child: ActionButton(
-                            name: Strings.backButton,
-                            textColor: AppColors.baseColor,
-                            backgroundColor: AppColors.white,
-                            handleTap: _toMovieList,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          OverlayLoading(visible: _isLoading),
-        ],
-      ),
-    );
+            OverlayLoading(visible: _isLoading),
+          ],
+        ),
+      );
+    } else {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(_createButtonName(widget.item)),
+        ),
+        body: Center(
+          child:
+              Column(mainAxisSize: MainAxisSize.min, children: const <Widget>[
+            OverlayLoading(visible: true),
+          ]),
+        ),
+      );
+    }
   }
 }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -15,6 +16,8 @@ void main() async {
 
   // 広告の初期化
   MobileAds.instance.initialize();
+
+  await Firebase.initializeApp();
 
   runApp(MaterialApp(
     home: Scaffold(
