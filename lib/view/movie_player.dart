@@ -14,7 +14,7 @@ class MoviePlayer extends StatefulWidget {
   WidgetRef ref;
 
   @override
-  State<MoviePlayer> createState() => _MoviePlayerState();
+  _MoviePlayerState createState() => _MoviePlayerState();
 }
 
 class _MoviePlayerState extends State<MoviePlayer> {
@@ -29,19 +29,19 @@ class _MoviePlayerState extends State<MoviePlayer> {
     super.initState();
     // movie_playerの初期化
     _controller =
-        VideoPlayerController.asset("assets/movies/aha${widget.item.id}.mp4");
-    _controller.initialize().then((_) {
-      setState(() {});
-
-      _controller.addListener(() {
-        final value = _controller.value;
-        if (!value.isPlaying &&
-            value.position.inSeconds >= value.duration.inSeconds) {
-          setState(() {
-            _isFinished = true;
+        VideoPlayerController.asset("assets/movies/aha${widget.item.id}.mp4")
+          ..initialize().then((_) {
+            setState(() {});
           });
-        }
-      });
+
+    _controller.addListener(() {
+      final value = _controller.value;
+      if (!value.isPlaying &&
+          value.position.inSeconds >= value.duration.inSeconds) {
+        setState(() {
+          _isFinished = true;
+        });
+      }
     });
 
     // reward広告の初期化
@@ -49,13 +49,12 @@ class _MoviePlayerState extends State<MoviePlayer> {
     adRewardForAnswer = AdReward(handleWatchAd: _toAnswer);
     adReward.createRewardedAd();
     adRewardForAnswer.createRewardedAd();
-    super.initState();
   }
 
   @override
   void dispose() {
-    _controller.dispose();
     super.dispose();
+    _controller.dispose();
   }
 
   String _createButtonName(DataItem item) {
