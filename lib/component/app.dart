@@ -15,6 +15,7 @@ class App extends ConsumerWidget {
             const Size(Dimens.iPhone13ProWidth, Dimens.iPhone13ProHeight),
         builder: () {
           return MaterialApp(
+              debugShowCheckedModeBanner: false,
               title: Strings.appTitle,
               theme: ThemeData(
                 appBarTheme: const AppBarTheme(
