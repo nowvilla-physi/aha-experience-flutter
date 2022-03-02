@@ -53,10 +53,11 @@ class _MoviePlayerState extends State<MoviePlayer> {
     });
 
     // reward広告の初期化
-    adReward = AdReward(handleWatchAd: _showHint);
-    adRewardForAnswer = AdReward(handleWatchAd: _toAnswer);
-    adReward.createRewardedAd();
-    adRewardForAnswer.createRewardedAd();
+    // TODO リリースされるまでTODO
+    // adReward = AdReward(handleWatchAd: _showHint);
+    // adRewardForAnswer = AdReward(handleWatchAd: _toAnswer);
+    // adReward.createRewardedAd();
+    // adRewardForAnswer.createRewardedAd();
   }
 
   @override
@@ -97,10 +98,16 @@ class _MoviePlayerState extends State<MoviePlayer> {
   }
 
   void _showAnswerDialog() {
+    // AppAlertDialog(
+    //   title: Strings.watchAnswerTitle,
+    //   content: Strings.watchAnswerContent,
+    //   handleClick: _showRewardedAdForAnswer,
+    //   context: context,
+    // ).showAlertDialog();
     AppAlertDialog(
       title: Strings.watchAnswerTitle,
       content: Strings.watchAnswerContent,
-      handleClick: _showRewardedAdForAnswer,
+      handleClick: _toAnswer,
       context: context,
     ).showAlertDialog();
   }
@@ -134,10 +141,16 @@ class _MoviePlayerState extends State<MoviePlayer> {
   }
 
   void _showHintDialog() {
+    // AppAlertDialog(
+    //   title: Strings.watchHintTitle,
+    //   content: Strings.watchHintContent,
+    //   handleClick: _showRewardedAd,
+    //   context: context,
+    // ).showAlertDialog();
     AppAlertDialog(
       title: Strings.watchHintTitle,
       content: Strings.watchHintContent,
-      handleClick: _showRewardedAd,
+      handleClick: _showHint,
       context: context,
     ).showAlertDialog();
   }

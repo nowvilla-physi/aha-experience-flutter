@@ -62,10 +62,10 @@ class Home extends ConsumerWidget {
               ),
             ),
           ),
-          const Align(
-            alignment: Alignment.bottomCenter,
-            child: AdBanner(size: AdSize.fullBanner),
-          )
+          // const Align(
+          //   alignment: Alignment.bottomCenter,
+          //   child: AdBanner(size: AdSize.fullBanner),
+          // )
         ],
       ),
     );
