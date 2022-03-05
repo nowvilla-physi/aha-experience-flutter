@@ -32,19 +32,16 @@ class _MoviesState extends State<Movies> {
   }
 
   void toHome() {
-    Navigator.of(context).pushNamedAndRemoveUntil(
-        Strings.homePath, (Route<dynamic> route) => false);
+    Navigator.of(context).pop();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
+            margin: EdgeInsets.only(top: Dimens.allMarginTop.h),
             padding: EdgeInsets.symmetric(
               horizontal: Dimens.allPadding.w,
               vertical: Dimens.allPadding.h,

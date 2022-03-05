@@ -43,13 +43,11 @@ class Answer extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
       body: Stack(
         children: [
           Center(
             child: Container(
+              margin: EdgeInsets.only(top: Dimens.allMarginTop.h),
               padding: EdgeInsets.symmetric(
                 horizontal: Dimens.allPadding.w,
                 vertical: Dimens.allPadding.h,
@@ -101,10 +99,10 @@ class Answer extends StatelessWidget {
               ),
             ),
           ),
-          // const Align(
-          //   alignment: Alignment.bottomCenter,
-          //   child: AdBanner(size: AdSize.fullBanner),
-          // )
+          const Align(
+            alignment: Alignment.bottomCenter,
+            child: AdBanner(size: AdSize.fullBanner),
+          )
         ],
       )
     );

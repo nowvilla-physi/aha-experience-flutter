@@ -53,11 +53,10 @@ class _MoviePlayerState extends State<MoviePlayer> {
     });
 
     // reward広告の初期化
-    // TODO リリースされるまでTODO
-    // adReward = AdReward(handleWatchAd: _showHint);
-    // adRewardForAnswer = AdReward(handleWatchAd: _toAnswer);
-    // adReward.createRewardedAd();
-    // adRewardForAnswer.createRewardedAd();
+    adReward = AdReward(handleWatchAd: _showHint);
+    adRewardForAnswer = AdReward(handleWatchAd: _toAnswer);
+    adReward.createRewardedAd();
+    adRewardForAnswer.createRewardedAd();
   }
 
   @override
@@ -98,16 +97,10 @@ class _MoviePlayerState extends State<MoviePlayer> {
   }
 
   void _showAnswerDialog() {
-    // AppAlertDialog(
-    //   title: Strings.watchAnswerTitle,
-    //   content: Strings.watchAnswerContent,
-    //   handleClick: _showRewardedAdForAnswer,
-    //   context: context,
-    // ).showAlertDialog();
     AppAlertDialog(
       title: Strings.watchAnswerTitle,
       content: Strings.watchAnswerContent,
-      handleClick: _toAnswer,
+      handleClick: _showRewardedAdForAnswer,
       context: context,
     ).showAlertDialog();
   }
@@ -141,16 +134,10 @@ class _MoviePlayerState extends State<MoviePlayer> {
   }
 
   void _showHintDialog() {
-    // AppAlertDialog(
-    //   title: Strings.watchHintTitle,
-    //   content: Strings.watchHintContent,
-    //   handleClick: _showRewardedAd,
-    //   context: context,
-    // ).showAlertDialog();
     AppAlertDialog(
       title: Strings.watchHintTitle,
       content: Strings.watchHintContent,
-      handleClick: _showHint,
+      handleClick: _showRewardedAd,
       context: context,
     ).showAlertDialog();
   }
@@ -170,19 +157,7 @@ class _MoviePlayerState extends State<MoviePlayer> {
   }
 
   void _toMovieList() {
-    switch (widget.item.level) {
-      case "beginner":
-        Navigator.of(context).pushNamed(Strings.beginnerMoviesPath);
-        break;
-      case "advanced":
-        Navigator.of(context).pushNamed(Strings.advancedMoviesPath);
-        break;
-      case "demon":
-        Navigator.of(context).pushNamed(Strings.demonMoviesPath);
-        break;
-      default:
-        Navigator.of(context).pushNamed(Strings.beginnerMoviesPath);
-    }
+    Navigator.of(context).pop();
     _initializeMoviePlayer();
     _controller?.dispose();
     _controller = null;
@@ -197,15 +172,13 @@ class _MoviePlayerState extends State<MoviePlayer> {
   Widget build(BuildContext context) {
     if (_controller != null) {
       return Scaffold(
-        appBar: AppBar(
-          title: Text(_createButtonName(widget.item)),
-        ),
         body: Stack(
           fit: StackFit.expand,
           children: <Widget>[
             SingleChildScrollView(
               child: Center(
                 child: Container(
+                  margin: EdgeInsets.only(top: Dimens.allMarginTop.h),
                   padding: EdgeInsets.symmetric(
                     horizontal: 0,
                     vertical: Dimens.allPadding.h,
@@ -299,9 +272,6 @@ class _MoviePlayerState extends State<MoviePlayer> {
       );
     } else {
       return Scaffold(
-        appBar: AppBar(
-          title: Text(_createButtonName(widget.item)),
-        ),
         body: Center(
           child:
               Column(mainAxisSize: MainAxisSize.min, children: const <Widget>[
