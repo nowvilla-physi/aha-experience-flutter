@@ -23,13 +23,11 @@ class Home extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
       body: Stack(
         children: [
           Center(
             child: Container(
+              margin: EdgeInsets.only(top: Dimens.allMarginTop.h),
               padding: EdgeInsets.symmetric(
                 horizontal: Dimens.allPadding.w,
                 vertical: Dimens.allPadding.h,
@@ -62,10 +60,10 @@ class Home extends ConsumerWidget {
               ),
             ),
           ),
-          // const Align(
-          //   alignment: Alignment.bottomCenter,
-          //   child: AdBanner(size: AdSize.fullBanner),
-          // )
+          const Align(
+            alignment: Alignment.bottomCenter,
+            child: AdBanner(size: AdSize.fullBanner),
+          )
         ],
       ),
     );
