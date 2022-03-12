@@ -53,10 +53,10 @@ class _MoviePlayerState extends State<MoviePlayer> {
     });
 
     // reward広告の初期化
-    adReward = AdReward(handleWatchAd: _showHint);
-    adRewardForAnswer = AdReward(handleWatchAd: _toAnswer);
-    adReward.createRewardedAd();
-    adRewardForAnswer.createRewardedAd();
+    // adReward = AdReward(handleWatchAd: _showHint);
+    // adRewardForAnswer = AdReward(handleWatchAd: _toAnswer);
+    // adReward.createRewardedAd();
+    // adRewardForAnswer.createRewardedAd();
   }
 
   @override
@@ -97,21 +97,27 @@ class _MoviePlayerState extends State<MoviePlayer> {
   }
 
   void _showAnswerDialog() {
+    // AppAlertDialog(
+    //   title: Strings.watchAnswerTitle,
+    //   content: Strings.watchAnswerContent,
+    //   handleClick: _showRewardedAdForAnswer,
+    //   context: context,
+    // ).showAlertDialog();
     AppAlertDialog(
       title: Strings.watchAnswerTitle,
       content: Strings.watchAnswerContent,
-      handleClick: _showRewardedAdForAnswer,
+      handleClick: _toAnswer,
       context: context,
     ).showAlertDialog();
   }
 
-  void _showRewardedAdForAnswer() {
-    if (widget.item.id % 2 == 0) {
-      adRewardForAnswer.showRewardedAd();
-    } else {
-      _toAnswer();
-    }
-  }
+  // void _showRewardedAdForAnswer() {
+  //   if (widget.item.id % 2 == 0) {
+  //     adRewardForAnswer.showRewardedAd();
+  //   } else {
+  //     _toAnswer();
+  //   }
+  // }
 
   void _toAnswer() {
     final id = widget.item.id;
@@ -134,17 +140,23 @@ class _MoviePlayerState extends State<MoviePlayer> {
   }
 
   void _showHintDialog() {
+    // AppAlertDialog(
+    //   title: Strings.watchHintTitle,
+    //   content: Strings.watchHintContent,
+    //   handleClick: _showRewardedAd,
+    //   context: context,
+    // ).showAlertDialog();
     AppAlertDialog(
       title: Strings.watchHintTitle,
       content: Strings.watchHintContent,
-      handleClick: _showRewardedAd,
+      handleClick: _showHint,
       context: context,
     ).showAlertDialog();
   }
 
-  void _showRewardedAd() {
-    adReward.showRewardedAd();
-  }
+  // void _showRewardedAd() {
+  //   adReward.showRewardedAd();
+  // }
 
   void _showHint() {
     AppAlertDialog(
